@@ -1,0 +1,164 @@
+package rose;
+
+import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.opengl.GL;
+
+import util.Time;
+
+import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
+
+import org.lwjgl.Version;
+import org.lwjgl.glfw.GLFWVidMode;
+
+public class Window {
+	public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 600;
+	private static final boolean START_FULLSCREEN = false;	
+	
+	private static Window window = null;
+	private static Scene current_scene;
+	
+	//private GLFWKeyCallback key_callback;
+	private boolean remain_open = true;
+	//private boolean fade_to_black = false;
+	
+	private long glfwWindow;
+	
+	public float r, g, b, a;
+	
+	private Window() {
+		r = 1;
+		b = 1;
+		g = 1;
+		a = 1;
+	}
+	
+	public static void changeScene(int new_scene) {
+		switch(new_scene) {
+			case 0:
+				current_scene = new LevelEditorScene();
+				current_scene.init();
+				break;
+			case 1:
+				current_scene = new LevelScene();
+				current_scene.init();
+				break;
+			default:
+				assert false : "Unknown scene '" + new_scene + "'";
+				break;
+		}
+	}
+	
+	public static Window getWindow() {
+		if (Window.window == null) {
+			Window.window = new Window();
+		}		
+		return Window.window;
+	}
+	
+	public void run() {
+		System.out.println("Hello LWJGL " + Version.getVersion() + "!");		
+		init();
+		loop();
+		deinit();
+	}
+	
+	/*
+	 * Initialize the program and glfw components
+	 */	
+    public void init() {    	
+    	// Setup an error callback
+        GLFWErrorCallback.createPrint(System.err).set();
+        // Initialize GLFW
+        if (!glfwInit()) {
+            throw new IllegalStateException("Unable to initialize GLFW.");
+        }
+        
+        // Set re-sizable
+        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+        // Request an OpenGL 3.3 Core context.
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); 
+        
+        int window_width = WINDOW_WIDTH;
+        int window_height = WINDOW_HEIGHT;
+        long monitor = 0;   
+        
+        monitor = glfwGetPrimaryMonitor();
+        GLFWVidMode vid_mode = glfwGetVideoMode(monitor);
+        
+        if(START_FULLSCREEN) {
+            // Retrieve the desktop resolution        	
+            window_width = vid_mode.width();
+            window_height = vid_mode.height();
+        } else {
+        	monitor = 0;
+        }
+        
+        glfwWindow = glfwCreateWindow(window_width, window_height, "Game - LWJGL3", monitor, 0);       
+        if(glfwWindow == 0) {
+            throw new RuntimeException("Failed to create window");
+        }
+        
+        if (!START_FULLSCREEN) {
+			glfwSetWindowPos(
+					glfwWindow,
+    				(vid_mode.width() - window_width) / 2,
+    				(vid_mode.height() - window_height) / 2
+    			);        	
+        } 
+        
+        glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
+        glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
+        glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
+        glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
+        
+        // Make this window's context the current on this thread.
+        glfwMakeContextCurrent(glfwWindow);
+        // Enable v-sync
+        glfwSwapInterval(1);
+        // Let LWJGL know to use this current context.
+        GL.createCapabilities();
+        // Make this window visible.
+        glfwShowWindow(glfwWindow);
+        
+        Window.changeScene(0);
+    }
+    
+    /**
+     * Releases game resources and window.
+     */
+    public void deinit() {
+        glfwFreeCallbacks(glfwWindow);
+        glfwDestroyWindow(glfwWindow);   
+        glfwTerminate();
+        System.out.println("Closed Succesfully!");
+    }
+    
+    public void loop() {    	
+    	float begin_time = Time.getTime();
+    	float end_time = Time.getTime();
+    	float delta = -1.0f;
+    	
+        // Continue whilst no close request from internal nor external.
+        while(!glfwWindowShouldClose(glfwWindow) && remain_open) {            
+            // Polls input and swap frame buffers.
+            glfwPollEvents();
+            
+            glClearColor(r, g, b, a);
+            glClear(GL_COLOR_BUFFER_BIT);
+            
+            if (delta >= 0) {
+            	current_scene.update(delta);
+            }
+            
+            glfwSwapBuffers(glfwWindow);
+            
+            end_time = Time.getTime();
+            delta = end_time - begin_time;
+            begin_time = end_time;            
+        }
+    }
+}
