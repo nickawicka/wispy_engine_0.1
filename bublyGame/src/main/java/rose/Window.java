@@ -13,7 +13,7 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window {
-	public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 600;
+	public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 500;
 	private static final boolean START_FULLSCREEN = false;	
 	
 	private static Window window = null;
