@@ -1,5 +1,8 @@
 package rose;
 
+import components.FontRenderer;
+import components.SpriteRenderer;
+
 import org.joml.Vector2f;
 import org.lwjgl.BufferUtils;
 
@@ -16,9 +19,9 @@ public class LevelEditorScene extends Scene {
 	
 	private float[] vertex_array = {
 			// Position				// Color
-			100.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f, 1.0f,		1, 1, // Bottom right 0
-			0.0f, 100.0f, 0.0f,		0.0f, 1.0f, 0.0f, 1.0f,		0, 0, // Top left		1
-			100.0f, 100.0f, 0.0f,	1.0f, 0.0f, 1.0f, 1.0f,		1, 0, // Top right	2
+			1000.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f, 1.0f,		1, 1, // Bottom right 0
+			0.0f, 450.0f, 0.0f,		0.0f, 1.0f, 0.0f, 1.0f,		0, 0, // Top left		1
+			1000.0f, 450.0f, 0.0f,	1.0f, 0.0f, 1.0f, 1.0f,		1, 0, // Top right	2
 			0.0f, 0.0f, 0.0f,		1.0f, 1.0f, 0.0f, 1.0f, 	0, 1  // Bottom left	3
 	};
 	
@@ -40,12 +43,21 @@ public class LevelEditorScene extends Scene {
 	private Shader default_shader;
 	private Texture test_texture;
 	
+	GameObject test_obj;
+	private boolean first_time = false;
+	
 	public LevelEditorScene() {
 		
 	}
 	
 	@Override
 	public void init() {	
+		System.out.println("Creating 'test object'");
+		this.test_obj = new GameObject("test object");
+		this.test_obj.addComponent(new SpriteRenderer());
+		this.test_obj.addComponent(new FontRenderer());
+		this.addGameObjectToScene(this.test_obj);
+		
 		this.camera = new Camera(new Vector2f());
 		default_shader = new Shader("assets/shaders/default.glsl");
 		default_shader.compile();
@@ -79,6 +91,7 @@ public class LevelEditorScene extends Scene {
 		int color_size = 4;
 		int uv_size = 2;
 		int vertex_size_bytes = (position_size + color_size + uv_size) * Float.BYTES;
+		
 		glVertexAttribPointer(0, position_size, GL_FLOAT, false, vertex_size_bytes, 0);
 		glEnableVertexAttribArray(0);
 		
@@ -97,7 +110,7 @@ public class LevelEditorScene extends Scene {
 		default_shader.use();
 		
 		// Upload texture to shader
-		default_shader.uploadFloat("TEX_SAMPLER", 0);
+		default_shader.uploadTexture("TEX_SAMPLER", 0);
 		glActiveTexture(GL_TEXTURE0);
 		test_texture.bind();
 		
@@ -121,5 +134,17 @@ public class LevelEditorScene extends Scene {
 		glBindVertexArray(0);
 		
 		default_shader.detach();	
+		
+		if (!first_time) {
+			System.out.println("Creating game object!");
+			GameObject go = new GameObject("Game Test 2");
+			go.addComponent(new SpriteRenderer());
+			this.addGameObjectToScene(go);
+			first_time = true;
+		}
+		
+		for (GameObject go : this.game_objects) {
+			go.update(dt);
+		}
 	}
 }
