@@ -3,8 +3,6 @@ package rose;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
-import util.Time;
-
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -13,24 +11,22 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window {
-	public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 500;
+	public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 600;
 	private static final boolean START_FULLSCREEN = false;	
 	
 	private static Window window = null;
 	private static Scene current_scene;
-	
-	//private GLFWKeyCallback key_callback;
+
 	private boolean remain_open = true;
-	//private boolean fade_to_black = false;
 	
 	private long glfwWindow;
 	
 	public float r, g, b, a;
 	
 	private Window() {
-		r = 1;
-		b = 1;
-		g = 1;
+		r = 0;
+		b = 0;
+		g = 0;
 		a = 1;
 	}
 	
@@ -57,6 +53,11 @@ public class Window {
 			Window.window = new Window();
 		}		
 		return Window.window;
+	}
+	
+	public static Scene getScene() {
+		getWindow();
+		return Window.current_scene;
 	}
 	
 	public void run() {
@@ -140,8 +141,8 @@ public class Window {
     }
     
     public void loop() {    	
-    	float begin_time = Time.getTime();
-    	float end_time = Time.getTime();
+    	float begin_time = (float)glfwGetTime();
+    	float end_time;
     	float delta = -1.0f;
     	
         // Continue whilst no close request from internal nor external.
@@ -153,12 +154,13 @@ public class Window {
             glClear(GL_COLOR_BUFFER_BIT);
             
             if (delta >= 0) {
+            	//System.out.println(delta);
             	current_scene.update(delta);
             }
             
             glfwSwapBuffers(glfwWindow);
             
-            end_time = Time.getTime();
+            end_time = (float)glfwGetTime();
             delta = end_time - begin_time;
             begin_time = end_time;            
         }

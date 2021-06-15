@@ -1,150 +1,64 @@
 package rose;
 
-import components.FontRenderer;
+import components.Sprite;
 import components.SpriteRenderer;
-
+import components.Spritesheet;
 import org.joml.Vector2f;
-import org.lwjgl.BufferUtils;
+import org.joml.Vector3f;
+import org.joml.Vector4f;
+import util.AssetPool;
 
-import renderer.Shader;
-import renderer.Texture;
-
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-
-import static org.lwjgl.opengl.GL30.*;
-import util.Time;
+import static org.lwjgl.glfw.GLFW.*;
 
 public class LevelEditorScene extends Scene {
-	
-	private float[] vertex_array = {
-			// Position				// Color
-			1000.0f, 0.0f, 0.0f,		1.0f, 0.0f, 0.0f, 1.0f,		1, 1, // Bottom right 0
-			0.0f, 450.0f, 0.0f,		0.0f, 1.0f, 0.0f, 1.0f,		0, 0, // Top left		1
-			1000.0f, 450.0f, 0.0f,	1.0f, 0.0f, 1.0f, 1.0f,		1, 0, // Top right	2
-			0.0f, 0.0f, 0.0f,		1.0f, 1.0f, 0.0f, 1.0f, 	0, 1  // Bottom left	3
-	};
-	
-	private int[] element_array = {
-			/*
-			 * 		x		x
-			 * 
-			 * 
-			 * 
-			 * 		x		x
-			 * 
-			 */
-			2, 1, 0, // Top right triangle
-			0, 1, 3 // Bottom right triangle
-	};
-	
-	private int vao_id, vbo_id, ebo_id;
-	
-	private Shader default_shader;
-	private Texture test_texture;
-	
-	GameObject test_obj;
-	private boolean first_time = false;
-	
+
 	public LevelEditorScene() {
 		
 	}
 	
 	@Override
 	public void init() {	
-		System.out.println("Creating 'test object'");
-		this.test_obj = new GameObject("test object");
-		this.test_obj.addComponent(new SpriteRenderer());
-		this.test_obj.addComponent(new FontRenderer());
-		this.addGameObjectToScene(this.test_obj);
+		loadResources();
+		this.camera = new Camera(new Vector2f(-250, 0));
 		
-		this.camera = new Camera(new Vector2f());
-		default_shader = new Shader("assets/shaders/default.glsl");
-		default_shader.compile();
-		this.test_texture = new Texture("assets/images/test_image.png");
+		Spritesheet sprites = AssetPool.getSpritesheet("assets/images/spritesheet.png");
 		
-		/*
-		 *  Generate VAO, VBO, and EBO buffer objects, and send to GPU
-		 */		
-		vao_id = glGenVertexArrays();
-		glBindVertexArray(vao_id);
+		GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
+		obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+		this.addGameObjectToScene(obj1);
 		
-		// Create a float buffer of vertices
-		FloatBuffer vertex_buffer = BufferUtils.createFloatBuffer(vertex_array.length);
-		vertex_buffer.put(vertex_array).flip();
+		GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400, 100), new Vector2f(256, 256)));
+		obj2.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+		this.addGameObjectToScene(obj2);
+	}
+	
+	private void loadResources() {
+		AssetPool.getShader("assets/shaders/default.glsl");
 		
-		// Create VBO upload and vertex buffer		
-		vbo_id = glGenBuffers();
-		glBindBuffer(GL_ARRAY_BUFFER, vbo_id);
-		glBufferData(GL_ARRAY_BUFFER, vertex_buffer, GL_STATIC_DRAW);
-		
-		// Create the indices and upload
-		IntBuffer element_buffer = BufferUtils.createIntBuffer(element_array.length);
-		element_buffer.put(element_array).flip();
-		
-		ebo_id = glGenBuffers();
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo_id);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, element_buffer, GL_STATIC_DRAW);
-		
-		// Add the vertex attribute pointers
-		int position_size = 3;
-		int color_size = 4;
-		int uv_size = 2;
-		int vertex_size_bytes = (position_size + color_size + uv_size) * Float.BYTES;
-		
-		glVertexAttribPointer(0, position_size, GL_FLOAT, false, vertex_size_bytes, 0);
-		glEnableVertexAttribArray(0);
-		
-		glVertexAttribPointer(1, color_size, GL_FLOAT, false, vertex_size_bytes, position_size * Float.BYTES);
-		glEnableVertexAttribArray(1);
-		
-		glVertexAttribPointer(2, uv_size, GL_FLOAT, false, vertex_size_bytes, (position_size + color_size) * Float.BYTES);
-		glEnableVertexAttribArray(2);
+		AssetPool.addSpriteSheet("assets/images/test_image.png", 
+				new Spritesheet(AssetPool.getTexture("assets/images/test_image.png"), 
+						16, 16, 26, 0));		
 	}
 	
 	@Override
-	public void update (float dt) {
-		camera.position.x -= dt * 50.0f;
-		camera.position.y -= dt * 20.0f;
+	public void update(float dt) {
+		System.out.println("FPS: " + (1.0f / dt));
 		
-		default_shader.use();
-		
-		// Upload texture to shader
-		default_shader.uploadTexture("TEX_SAMPLER", 0);
-		glActiveTexture(GL_TEXTURE0);
-		test_texture.bind();
-		
-		default_shader.uploadMat4f("u_proj_matrix", camera.getProjectionMatrix());
-		default_shader.uploadMat4f("u_view_matrix", camera.getViewMatrix());
-		default_shader.uploadFloat("u_time", Time.getTime());
-		
-		// Bind the VAO that we're using
-		glBindVertexArray(vao_id);		
-		
-		// Enable the vertex attribute pointers
-		glEnableVertexAttribArray(0);
-		glEnableVertexAttribArray(1);
-		
-		glDrawElements(GL_TRIANGLES, element_array.length, GL_UNSIGNED_INT, 0);
-		
-		// Unbind everything
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		
-		glBindVertexArray(0);
-		
-		default_shader.detach();	
-		
-		if (!first_time) {
-			System.out.println("Creating game object!");
-			GameObject go = new GameObject("Game Test 2");
-			go.addComponent(new SpriteRenderer());
-			this.addGameObjectToScene(go);
-			first_time = true;
+		if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
+			camera.position.x += 100f * dt;
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
+			camera.position.x -= 100f * dt;
+		}
+		if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
+			camera.position.y += 100f * dt;
+		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
+			camera.position.y -= 100f * dt;
 		}
 		
 		for (GameObject go : this.game_objects) {
 			go.update(dt);
 		}
+		
+		this.renderer.render();
 	}
 }
