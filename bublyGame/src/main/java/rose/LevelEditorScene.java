@@ -1,16 +1,16 @@
 package rose;
 
-import components.Sprite;
 import components.SpriteRenderer;
 import components.Spritesheet;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
-import org.joml.Vector4f;
 import util.AssetPool;
 
 import static org.lwjgl.glfw.GLFW.*;
 
 public class LevelEditorScene extends Scene {
+	
+	private GameObject obj_1;
+	private Spritesheet sprites;
 
 	public LevelEditorScene() {
 		
@@ -21,14 +21,14 @@ public class LevelEditorScene extends Scene {
 		loadResources();
 		this.camera = new Camera(new Vector2f(-250, 0));
 		
-		Spritesheet sprites = AssetPool.getSpritesheet("assets/images/spritesheet.png");
+		sprites = AssetPool.getSpritesheet("assets/images/test_image.png");		
 		
-		GameObject obj1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
-		obj1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
-		this.addGameObjectToScene(obj1);
+		obj_1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
+		obj_1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+		this.addGameObjectToScene(obj_1);
 		
 		GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400, 100), new Vector2f(256, 256)));
-		obj2.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+		obj2.addComponent(new SpriteRenderer(sprites.getSprite(1)));
 		this.addGameObjectToScene(obj2);
 	}
 	
@@ -37,8 +37,12 @@ public class LevelEditorScene extends Scene {
 		
 		AssetPool.addSpriteSheet("assets/images/test_image.png", 
 				new Spritesheet(AssetPool.getTexture("assets/images/test_image.png"), 
-						16, 16, 26, 0));		
+						1000, 2000, 2, 0));		
 	}
+	
+	private int sprite_index = 0;
+	private float sprite_flip_time = 0.2f;
+	private float sprite_flip_time_left = 0.0f;
 	
 	@Override
 	public void update(float dt) {
@@ -53,6 +57,15 @@ public class LevelEditorScene extends Scene {
 			camera.position.y += 100f * dt;
 		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
 			camera.position.y -= 100f * dt;
+		}
+		
+		sprite_flip_time_left -= dt;
+		if (sprite_flip_time_left <= 0) {
+			sprite_flip_time_left = sprite_flip_time;
+			sprite_index++;
+			if (sprite_index > 4) {
+				sprite_index = 0;
+			}
 		}
 		
 		for (GameObject go : this.game_objects) {

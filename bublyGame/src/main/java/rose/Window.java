@@ -24,9 +24,9 @@ public class Window {
 	public float r, g, b, a;
 	
 	private Window() {
-		r = 0;
-		b = 0;
-		g = 0;
+		r = 0.7f;
+		b = 0.2f;
+		g = 0.1f;
 		a = 1;
 	}
 	
