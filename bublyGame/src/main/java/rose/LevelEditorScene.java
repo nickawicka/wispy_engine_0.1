@@ -1,5 +1,6 @@
 package rose;
 
+import components.Sprite;
 import components.SpriteRenderer;
 import components.Spritesheet;
 import org.joml.Vector2f;
@@ -21,28 +22,28 @@ public class LevelEditorScene extends Scene {
 		loadResources();
 		this.camera = new Camera(new Vector2f(-250, 0));
 		
-		sprites = AssetPool.getSpritesheet("assets/images/test_image.png");		
+		sprites = AssetPool.getSpritesheet("assets/images/moonguy_rotate(2).png");		
 		
-		obj_1 = new GameObject("Object 1", new Transform(new Vector2f(100, 100), new Vector2f(256, 256)));
+		obj_1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100), new Vector2f(256, 256)), 2);
 		obj_1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
 		this.addGameObjectToScene(obj_1);
 		
-		GameObject obj2 = new GameObject("Object 2", new Transform(new Vector2f(400, 100), new Vector2f(256, 256)));
-		obj2.addComponent(new SpriteRenderer(sprites.getSprite(1)));
-		this.addGameObjectToScene(obj2);
+		GameObject obj_2 = new GameObject("Object 2", new Transform(new Vector2f(400, 100), new Vector2f(256, 256)), 3);
+		obj_2.addComponent(new SpriteRenderer(sprites.getSprite(5)));
+		//this.addGameObjectToScene(obj_2);
 	}
 	
 	private void loadResources() {
 		AssetPool.getShader("assets/shaders/default.glsl");
 		
-		AssetPool.addSpriteSheet("assets/images/test_image.png", 
-				new Spritesheet(AssetPool.getTexture("assets/images/test_image.png"), 
-						1000, 2000, 2, 0));		
+		AssetPool.addSpriteSheet("assets/images/moonguy_rotate(2).png", 
+				new Spritesheet(AssetPool.getTexture("assets/images/moonguy_rotate(2).png"), 
+						44, 64, 8, 0));		
 	}
 	
-	private int sprite_index = 0;
-	private float sprite_flip_time = 0.2f;
-	private float sprite_flip_time_left = 0.0f;
+	private int spriteIndex = 0;
+    private float spriteFlipTime = 0.2f;
+    private float spriteFlipTimeLeft = 0.0f;
 	
 	@Override
 	public void update(float dt) {
@@ -59,14 +60,15 @@ public class LevelEditorScene extends Scene {
 			camera.position.y -= 100f * dt;
 		}
 		
-		sprite_flip_time_left -= dt;
-		if (sprite_flip_time_left <= 0) {
-			sprite_flip_time_left = sprite_flip_time;
-			sprite_index++;
-			if (sprite_index > 4) {
-				sprite_index = 0;
-			}
-		}
+		spriteFlipTimeLeft -= dt;
+        if (spriteFlipTimeLeft <= 0) {
+            spriteFlipTimeLeft = spriteFlipTime;
+            spriteIndex++;
+            if (spriteIndex > 7) {
+                spriteIndex = 0;
+            }
+            obj_1.getComponent(SpriteRenderer.class).setSprite(sprites.getSprite(spriteIndex));
+        }
 		
 		for (GameObject go : this.game_objects) {
 			go.update(dt);

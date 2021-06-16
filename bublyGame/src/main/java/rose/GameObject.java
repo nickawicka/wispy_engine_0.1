@@ -8,15 +8,18 @@ public class GameObject {
 	private String name;
 	private List<Component> components;
 	public Transform transform;
+	private int z_index;
 	
 	public GameObject(String name) {
 		this.name = name;
 		this.components = new ArrayList<>();
 		this.transform = new Transform();
+		this.z_index = 0;
 	}
 	
-	public GameObject(String name, Transform transform) {
+	public GameObject(String name, Transform transform, int z_index) {
 		this.name = name;
+		this.z_index = z_index;
 		this.components = new ArrayList<>();
 		this.transform = transform;
 	}
@@ -60,6 +63,10 @@ public class GameObject {
 		for (int i = 0; i < components.size(); i++) {
 			components.get(i).start();
 		}
+	}
+	
+	public int getZIndex() {
+		return this.z_index;
 	}
 
 	public String getName() {

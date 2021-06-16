@@ -11,7 +11,8 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window {
-	public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 600;
+	//public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 600;
+	private int width, height;
 	private static final boolean START_FULLSCREEN = false;	
 	
 	private static Window window = null;
@@ -20,13 +21,16 @@ public class Window {
 	private boolean remain_open = true;
 	
 	private long glfwWindow;
+	private ImGuiLayer imgui_layer;
 	
 	public float r, g, b, a;
 	
 	private Window() {
-		r = 0.7f;
-		b = 0.2f;
-		g = 0.1f;
+		this.width = 1600;
+		this.height = 1000;
+		r = 1;
+		b = 1;
+		g = 0;
 		a = 1;
 	}
 	
@@ -85,8 +89,8 @@ public class Window {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); 
         
-        int window_width = WINDOW_WIDTH;
-        int window_height = WINDOW_HEIGHT;
+        int window_width = this.width;
+        int window_height = this.height;
         long monitor = 0;   
         
         monitor = glfwGetPrimaryMonitor();
@@ -117,6 +121,10 @@ public class Window {
         glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
         glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
+        glfwSetWindowSizeCallback(glfwWindow, (w, new_width, new_height) -> {
+        	Window.setWidth(new_width);
+        	Window.setHeight(new_height);
+        });
         
         // Make this window's context the current on this thread.
         glfwMakeContextCurrent(glfwWindow);
@@ -126,6 +134,11 @@ public class Window {
         GL.createCapabilities();
         // Make this window visible.
         glfwShowWindow(glfwWindow);
+        
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+        this.imgui_layer = new ImGuiLayer(glfwWindow);
+        this.imgui_layer.initImGui();
         
         Window.changeScene(0);
     }
@@ -154,15 +167,31 @@ public class Window {
             glClear(GL_COLOR_BUFFER_BIT);
             
             if (delta >= 0) {
-            	//System.out.println(delta);
             	current_scene.update(delta);
             }
             
+            this.imgui_layer.update(delta);
             glfwSwapBuffers(glfwWindow);
             
             end_time = (float)glfwGetTime();
             delta = end_time - begin_time;
             begin_time = end_time;            
         }
+    }
+    
+    public static int getWidth() {
+        return getWindow().width;
+    }
+
+    public static int getHeight() {
+        return getWindow().height;
+    }
+
+    public static void setWidth(int newWidth) {
+    	getWindow().width = newWidth;
+    }
+
+    public static void setHeight(int newHeight) {
+    	getWindow().height = newHeight;
     }
 }

@@ -4,6 +4,7 @@ import components.SpriteRenderer;
 import rose.GameObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Renderer {
@@ -24,7 +25,7 @@ public class Renderer {
 	private void addSprite(SpriteRenderer sprite) {
 		boolean added = false;
 		for (RenderBatch batch : batches) {
-			if (batch.hasRoom()) {
+			if (batch.hasRoom() && batch.getZIndex() == sprite.game_object.getZIndex()) {
 				Texture tex = sprite.getTexture();
 				if (tex == null || (batch.hasTexture(tex) || batch.hasTextureRoom())) {
 					batch.addSprite(sprite);
@@ -35,10 +36,11 @@ public class Renderer {
 		}
 		
 		if (!added) {
-			RenderBatch new_batch = new RenderBatch(MAX_BATCH_SIZE);
+			RenderBatch new_batch = new RenderBatch(MAX_BATCH_SIZE, sprite.game_object.getZIndex());
 			new_batch.start();
 			batches.add(new_batch);
 			new_batch.addSprite(sprite);
+			Collections.sort(batches);
 		}		
 	}
 	

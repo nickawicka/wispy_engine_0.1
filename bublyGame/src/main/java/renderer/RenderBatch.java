@@ -16,7 +16,7 @@ import static org.lwjgl.opengl.GL20C.glVertexAttribPointer;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
-public class RenderBatch {
+public class RenderBatch implements Comparable<RenderBatch> {
 	// Vertex Properties
 	// ======
 	// Position				Color							tex coords		tex id
@@ -45,11 +45,13 @@ public class RenderBatch {
 	private int vao_id, vbo_id;
 	private int max_batch_size;
 	private Shader shader;
+	private int z_index;
 	
-	public RenderBatch(int max_batch_size) {
+	public RenderBatch(int max_batch_size, int z_index) {
 		shader = AssetPool.getShader("assets/shaders/default.glsl");
 		this.sprites = new SpriteRenderer[max_batch_size];
 		this.max_batch_size = max_batch_size;
+		this.z_index = z_index;
 		
 		// Four quad vertices
 		vertices = new float[max_batch_size * 4 * VERTEX_SIZE];
@@ -240,4 +242,12 @@ public class RenderBatch {
 		return this.textures.contains(tex);
 	}
 	
+	public int getZIndex() {
+		return this.z_index;
+	}
+	
+	@Override
+	public int compareTo(RenderBatch o) {
+		return Integer.compare(this.z_index, o.z_index);
+	}	
 }
