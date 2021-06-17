@@ -150,6 +150,7 @@ public class Window {
         glfwFreeCallbacks(glfwWindow);
         glfwDestroyWindow(glfwWindow);   
         glfwTerminate();
+        //this.imgui_layer.
         System.out.println("Closed Succesfully!");
     }
     
@@ -170,7 +171,7 @@ public class Window {
             	current_scene.update(delta);
             }
             
-            this.imgui_layer.update(delta);
+            this.imgui_layer.update(delta, current_scene);
             glfwSwapBuffers(glfwWindow);
             
             end_time = (float)glfwGetTime();

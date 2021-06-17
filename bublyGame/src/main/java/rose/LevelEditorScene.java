@@ -1,9 +1,15 @@
 package rose;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import components.Sprite;
 import components.SpriteRenderer;
 import components.Spritesheet;
+import imgui.ImGui;
+
 import org.joml.Vector2f;
+import org.joml.Vector4f;
+
 import util.AssetPool;
 
 import static org.lwjgl.glfw.GLFW.*;
@@ -12,6 +18,7 @@ public class LevelEditorScene extends Scene {
 	
 	private GameObject obj_1;
 	private Spritesheet sprites;
+	SpriteRenderer obj_1_sprite;
 
 	public LevelEditorScene() {
 		
@@ -25,12 +32,20 @@ public class LevelEditorScene extends Scene {
 		sprites = AssetPool.getSpritesheet("assets/images/moonguy_rotate(2).png");		
 		
 		obj_1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100), new Vector2f(256, 256)), 2);
-		obj_1.addComponent(new SpriteRenderer(sprites.getSprite(0)));
+		obj_1_sprite = new SpriteRenderer();
+		obj_1_sprite.setSprite(sprites.getSprite(0));
+		//obj_1_sprite.setColor(new Vector4f(1, 0, 0, 1));
+		obj_1.addComponent(obj_1_sprite);		
 		this.addGameObjectToScene(obj_1);
+		this.active_game_object = obj_1;
 		
 		GameObject obj_2 = new GameObject("Object 2", new Transform(new Vector2f(400, 100), new Vector2f(256, 256)), 3);
-		obj_2.addComponent(new SpriteRenderer(sprites.getSprite(5)));
-		//this.addGameObjectToScene(obj_2);
+		SpriteRenderer obj_2_sprite_renderer = new SpriteRenderer();
+		Sprite obj_2_sprite = new Sprite();
+		obj_2_sprite.setTexture(AssetPool.getTexture("assets/images/test_image.png"));
+		obj_2_sprite_renderer.setSprite(obj_2_sprite);
+		obj_2.addComponent(obj_2_sprite_renderer);
+		this.addGameObjectToScene(obj_2);
 	}
 	
 	private void loadResources() {
@@ -75,5 +90,12 @@ public class LevelEditorScene extends Scene {
 		}
 		
 		this.renderer.render();
+	}
+	
+	@Override
+	public void imGui() {
+		ImGui.begin("Test Window");
+		ImGui.text("Some random text");
+		ImGui.end();
 	}
 }

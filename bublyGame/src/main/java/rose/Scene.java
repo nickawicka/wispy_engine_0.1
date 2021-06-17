@@ -5,13 +5,16 @@ import renderer.Renderer;
 import java.util.ArrayList;
 import java.util.List;
 
+import imgui.ImGui;
+
 public abstract class Scene {
 	
 	protected Renderer renderer = new Renderer();
 	protected Camera camera;
 	private boolean is_running = false;
 	protected List<GameObject> game_objects = new ArrayList<>();
-
+	protected GameObject active_game_object = null;
+	
 	public Scene() {
 		
 	}
@@ -42,5 +45,18 @@ public abstract class Scene {
 	
 	public Camera camera() {
 		return this.camera;
+	}
+	
+	public void sceneImGui() {
+		if (active_game_object != null) {
+			ImGui.begin("Inspector");
+			active_game_object.imGui();
+			ImGui.end();
+		}
+		imGui();
+	}
+	
+	public void imGui() {
+		
 	}
 }
