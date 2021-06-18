@@ -1,7 +1,13 @@
 package rose;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import renderer.Renderer;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +20,7 @@ public abstract class Scene {
 	private boolean is_running = false;
 	protected List<GameObject> game_objects = new ArrayList<>();
 	protected GameObject active_game_object = null;
+	protected boolean level_loaded = false;
 	
 	public Scene() {
 		
@@ -58,5 +65,44 @@ public abstract class Scene {
 	
 	public void imGui() {
 		
+	}
+	
+	public void saveExit() {
+		Gson gson = new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(Component.class, new ComponentDeserializer())
+				.registerTypeAdapter(GameObject.class, new GameObjectDeserializer())
+				.create();
+		
+		try {
+			FileWriter writer = new FileWriter("level.txt");
+			writer.write(gson.toJson(this.game_objects));
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void load() {
+		Gson gson = new GsonBuilder()
+				.setPrettyPrinting()
+				.registerTypeAdapter(Component.class, new ComponentDeserializer())
+				.registerTypeAdapter(GameObject.class, new GameObjectDeserializer())
+				.create();
+		
+		String in_file = "";
+		try {
+			in_file = new String(Files.readAllBytes(Paths.get("level.txt")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		if (!in_file.equals("")) {
+			GameObject[] objs = gson.fromJson(in_file, GameObject[].class);
+			for (int i = 0; i < objs.length; i++) {
+				addGameObjectToScene(objs[i]);
+			}
+			this.level_loaded = true;
+		}
 	}
 }

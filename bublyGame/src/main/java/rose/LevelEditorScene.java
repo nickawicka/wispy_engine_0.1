@@ -8,7 +8,6 @@ import components.Spritesheet;
 import imgui.ImGui;
 
 import org.joml.Vector2f;
-import org.joml.Vector4f;
 
 import util.AssetPool;
 
@@ -28,6 +27,9 @@ public class LevelEditorScene extends Scene {
 	public void init() {	
 		loadResources();
 		this.camera = new Camera(new Vector2f(-250, 0));
+		if (level_loaded) {
+			return;
+		}
 		
 		sprites = AssetPool.getSpritesheet("assets/images/moonguy_rotate(2).png");		
 		
@@ -45,7 +47,7 @@ public class LevelEditorScene extends Scene {
 		obj_2_sprite.setTexture(AssetPool.getTexture("assets/images/test_image.png"));
 		obj_2_sprite_renderer.setSprite(obj_2_sprite);
 		obj_2.addComponent(obj_2_sprite_renderer);
-		this.addGameObjectToScene(obj_2);
+		this.addGameObjectToScene(obj_2);		
 	}
 	
 	private void loadResources() {

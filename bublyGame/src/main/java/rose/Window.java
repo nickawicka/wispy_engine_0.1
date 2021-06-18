@@ -11,7 +11,7 @@ import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWVidMode;
 
 public class Window {
-	//public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 600;
+	//public static final int WINDOW_WIDTH = 1000, WINDOW_HEIGHT = 500;
 	private int width, height;
 	private static final boolean START_FULLSCREEN = false;	
 	
@@ -27,7 +27,7 @@ public class Window {
 	
 	private Window() {
 		this.width = 1600;
-		this.height = 1000;
+		this.height = 900;
 		r = 1;
 		b = 1;
 		g = 0;
@@ -159,6 +159,7 @@ public class Window {
     	float end_time;
     	float delta = -1.0f;
     	
+    	current_scene.load();    	
         // Continue whilst no close request from internal nor external.
         while(!glfwWindowShouldClose(glfwWindow) && remain_open) {            
             // Polls input and swap frame buffers.
@@ -178,6 +179,7 @@ public class Window {
             delta = end_time - begin_time;
             begin_time = end_time;            
         }
+        current_scene.saveExit();
     }
     
     public static int getWidth() {
