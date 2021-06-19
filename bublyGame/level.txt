@@ -6,9 +6,9 @@
         "type": "components.SpriteRenderer",
         "properties": {
           "color": {
-            "x": 1.0,
+            "x": 0.99999,
             "y": 1.0,
-            "z": 1.0,
+            "z": 0.9999948,
             "w": 1.0
           },
           "sprite": {
@@ -20,22 +20,34 @@
             },
             "tex_coords": [
               {
-                "x": 0.625,
+                "x": 0.5,
                 "y": 1.0
               },
               {
-                "x": 0.625,
-                "y": 0.0
-              },
-              {
                 "x": 0.5,
                 "y": 0.0
               },
               {
-                "x": 0.5,
+                "x": 0.375,
+                "y": 0.0
+              },
+              {
+                "x": 0.375,
                 "y": 1.0
               }
             ]
+          }
+        }
+      },
+      {
+        "type": "components.Rigidbody",
+        "properties": {
+          "collider_type": 0,
+          "friction": 0.0,
+          "velocity": {
+            "x": 0.0,
+            "y": 0.5,
+            "z": 0.0
           }
         }
       }
@@ -51,58 +63,5 @@
       }
     },
     "z_index": 2
-  },
-  {
-    "name": "Object 2",
-    "components": [
-      {
-        "type": "components.SpriteRenderer",
-        "properties": {
-          "color": {
-            "x": 1.0,
-            "y": 1.0,
-            "z": 1.0,
-            "w": 1.0
-          },
-          "sprite": {
-            "texture": {
-              "file_path": "assets/images/test_image.png",
-              "tex_id": 3,
-              "width": 4096,
-              "height": 1448
-            },
-            "tex_coords": [
-              {
-                "x": 1.0,
-                "y": 1.0
-              },
-              {
-                "x": 1.0,
-                "y": 0.0
-              },
-              {
-                "x": 0.0,
-                "y": 0.0
-              },
-              {
-                "x": 0.0,
-                "y": 1.0
-              }
-            ]
-          }
-        }
-      }
-    ],
-    "transform": {
-      "position": {
-        "x": 400.0,
-        "y": 100.0
-      },
-      "scale": {
-        "x": 256.0,
-        "y": 256.0
-      }
-    },
-    "z_index": 3
   }
 ]

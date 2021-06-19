@@ -38,18 +38,18 @@ public class Window {
 		switch(new_scene) {
 			case 0:
 				current_scene = new LevelEditorScene();
-				current_scene.init();
-				current_scene.start();
 				break;
 			case 1:
 				current_scene = new LevelScene();
-				current_scene.init();
-				current_scene.start();
 				break;
 			default:
 				assert false : "Unknown scene '" + new_scene + "'";
 				break;
 		}
+		
+		current_scene.load();
+		current_scene.init();
+		current_scene.start();
 	}
 	
 	public static Window getWindow() {
@@ -158,8 +158,7 @@ public class Window {
     	float begin_time = (float)glfwGetTime();
     	float end_time;
     	float delta = -1.0f;
-    	
-    	current_scene.load();    	
+   	
         // Continue whilst no close request from internal nor external.
         while(!glfwWindowShouldClose(glfwWindow) && remain_open) {            
             // Polls input and swap frame buffers.
