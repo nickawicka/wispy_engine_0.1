@@ -1,4 +1,6 @@
-package rose;
+package scenes;
+
+import rose.Window;
 
 public class LevelScene extends Scene {
 	

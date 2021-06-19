@@ -3,25 +3,25 @@ package rose;
 import java.util.ArrayList;
 import java.util.List;
 
+import components.Component;
+
 public class GameObject {
+	
+	private static int ID_COUNTER = 0;
+	private int uid = -1;
 	
 	private String name;
 	private List<Component> components;
 	public Transform transform;
 	private int z_index;
 	
-	public GameObject(String name) {
-		this.name = name;
-		this.components = new ArrayList<>();
-		this.transform = new Transform();
-		this.z_index = 0;
-	}
-	
 	public GameObject(String name, Transform transform, int z_index) {
 		this.name = name;
 		this.z_index = z_index;
 		this.components = new ArrayList<>();
 		this.transform = transform;
+		
+		this.uid = ID_COUNTER++;
 	}
 
 	public <T extends Component> T getComponent(Class<T> component_class) {
@@ -53,6 +53,10 @@ public class GameObject {
 		c.game_object = this;
 	}
 	
+	public List<Component> getAllComponents() {
+		return this.components;
+	}
+	
 	public void update(float dt) {
 		for (int i = 0; i < components.size(); i++) {
 			components.get(i).update(dt);
@@ -73,6 +77,14 @@ public class GameObject {
 	
 	public int getZIndex() {
 		return this.z_index;
+	}
+	
+	public int uid() {
+		return this.uid;
+	}
+	
+	public static void init(int max_id) {
+		ID_COUNTER = max_id;
 	}
 
 	public String getName() {

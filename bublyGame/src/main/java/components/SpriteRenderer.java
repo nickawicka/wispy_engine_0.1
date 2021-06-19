@@ -1,6 +1,5 @@
 package components;
 
-import rose.Component;
 import rose.Transform;
 import org.joml.Vector2f;
 import org.joml.Vector4f;

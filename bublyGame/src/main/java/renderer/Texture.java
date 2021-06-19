@@ -69,6 +69,10 @@ public class Texture {
 		return this.height;
 	}
 	
+	public int getId() {
+		return tex_id;
+	}
+	
 	public String getFilePath() {
 		return file_path;
 	}

@@ -6,12 +6,14 @@
         "type": "components.SpriteRenderer",
         "properties": {
           "color": {
-            "x": 0.99999,
-            "y": 1.0,
-            "z": 0.9999948,
+            "x": 0.8681319,
+            "y": 0.49112242,
+            "z": 0.1589985,
             "w": 1.0
           },
           "sprite": {
+            "width": 0.0,
+            "height": 0.0,
             "texture": {
               "file_path": "assets/images/moonguy_rotate(2).png",
               "tex_id": 2,
@@ -42,12 +44,12 @@
       {
         "type": "components.Rigidbody",
         "properties": {
-          "collider_type": 0,
-          "friction": 0.0,
+          "collider_type": 4,
+          "friction": 3.0,
           "velocity": {
-            "x": 0.0,
-            "y": 0.5,
-            "z": 0.0
+            "x": 34345.0,
+            "y": 4.0,
+            "z": 4.0
           }
         }
       }

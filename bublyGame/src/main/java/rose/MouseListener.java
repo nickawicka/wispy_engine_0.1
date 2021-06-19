@@ -1,5 +1,7 @@
 package rose;
 
+import org.joml.Vector4f;
+
 import static org.lwjgl.glfw.GLFW.GLFW_PRESS;
 import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
@@ -7,7 +9,7 @@ public class MouseListener {
 	private static MouseListener instance;
 	private double scroll_x, scroll_y;
 	private double x_pos, y_pos, last_y, last_x;
-	private boolean mouse_button_press[] = new boolean[3]; // stores which button was last pressed
+	private boolean mouse_button_press[] = new boolean[9]; // stores which button was last pressed
 	private boolean is_dragging;
 	
 	private MouseListener() {
@@ -67,6 +69,28 @@ public class MouseListener {
 	
 	public static float getY() {
 		return (float)getMouseListener().y_pos;
+	}
+	
+	public static float getOrthoX() {
+		float current_x = getX();
+		current_x = (current_x / (float)Window.getWidth()) * 2.0f - 1.0f;
+		Vector4f tmp = new Vector4f(current_x, 0, 0, 1);
+		tmp.mul(Window.getScene().camera().getInverseProjection())
+		   .mul(Window.getScene().camera().getInverseView());
+		current_x = tmp.x;
+		
+		return current_x;
+	}
+	
+	public static float getOrthoY() {
+		float current_y = Window.getHeight() - getY();
+		current_y = (current_y / (float)Window.getHeight()) * 2.0f - 1.0f;
+		Vector4f tmp = new Vector4f(current_y, 0, 0, 1);
+		tmp.mul(Window.getScene().camera().getInverseProjection())
+		   .mul(Window.getScene().camera().getInverseView());
+		current_y = tmp.y;
+		
+		return current_y;
 	}
 	
 	public static float getDx() {

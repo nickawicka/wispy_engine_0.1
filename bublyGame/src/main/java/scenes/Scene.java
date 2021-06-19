@@ -1,8 +1,14 @@
-package rose;
+package scenes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import components.Component;
+import components.ComponentDeserializer;
 import renderer.Renderer;
+import rose.Camera;
+import rose.GameObject;
+import rose.GameObjectDeserializer;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -98,10 +104,25 @@ public abstract class Scene {
 		}
 		
 		if (!in_file.equals("")) {
+			int max_comp_id = -1;
+			int max_go_id = -1;
 			GameObject[] objs = gson.fromJson(in_file, GameObject[].class);
 			for (int i = 0; i < objs.length; i++) {
 				addGameObjectToScene(objs[i]);
+				for (Component c : objs[i].getAllComponents()) {
+					if (c.uid() > max_comp_id) {
+						max_comp_id = c.uid();
+					}
+				}
+				if (objs[i].uid() > max_go_id) {
+					max_go_id = objs[i].uid();
+				}
 			}
+			
+			max_comp_id++;
+			max_go_id++;
+			Component.init(max_comp_id);
+			GameObject.init(max_go_id);			
 			this.level_loaded = true;
 		}
 	}

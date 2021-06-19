@@ -1,4 +1,4 @@
-package rose;
+package scenes;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -6,18 +6,27 @@ import components.Sprite;
 import components.SpriteRenderer;
 import components.Spritesheet;
 import imgui.ImGui;
+import imgui.ImVec2;
+import rose.Camera;
+import rose.GameObject;
+import rose.GameObjectDeserializer;
+import rose.Prefabs;
+import rose.Transform;
+import components.Component;
+import components.ComponentDeserializer;
+import components.MouseControls;
 import components.Rigidbody;
 import org.joml.Vector2f;
 
 import util.AssetPool;
-
-import static org.lwjgl.glfw.GLFW.*;
 
 public class LevelEditorScene extends Scene {
 	
 	private GameObject obj_1;
 	private Spritesheet sprites;
 	SpriteRenderer obj_1_sprite;
+	
+	MouseControls mouse_controls = new MouseControls();
 
 	public LevelEditorScene() {
 		
@@ -27,17 +36,15 @@ public class LevelEditorScene extends Scene {
 	public void init() {	
 		loadResources();
 		this.camera = new Camera(new Vector2f(-250, 0));
+		sprites = AssetPool.getSpritesheet("assets/images/moonguy_rotate(2).png");
 		if (level_loaded) {
 			this.active_game_object = game_objects.get(0);
 			return;
-		}
-		
-		sprites = AssetPool.getSpritesheet("assets/images/moonguy_rotate(2).png");		
+		}			
 		
 		obj_1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100), new Vector2f(256, 256)), 2);
 		obj_1_sprite = new SpriteRenderer();
 		obj_1_sprite.setSprite(sprites.getSprite(0));
-		//obj_1_sprite.setColor(new Vector4f(1, 0, 0, 1));
 		obj_1.addComponent(obj_1_sprite);
 		obj_1.addComponent(new Rigidbody());
 		this.addGameObjectToScene(obj_1);
@@ -73,18 +80,8 @@ public class LevelEditorScene extends Scene {
 	
 	@Override
 	public void update(float dt) {
-		System.out.println("FPS: " + (1.0f / dt));
-		
-		if (KeyListener.isKeyPressed(GLFW_KEY_RIGHT)) {
-			camera.position.x += 100f * dt;
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_LEFT)) {
-			camera.position.x -= 100f * dt;
-		}
-		if (KeyListener.isKeyPressed(GLFW_KEY_UP)) {
-			camera.position.y += 100f * dt;
-		} else if (KeyListener.isKeyPressed(GLFW_KEY_DOWN)) {
-			camera.position.y -= 100f * dt;
-		}
+		//System.out.println("FPS: " + (1.0f / dt));
+		mouse_controls.update(dt);
 		
 		for (GameObject go : this.game_objects) {
 			go.update(dt);
@@ -95,8 +92,39 @@ public class LevelEditorScene extends Scene {
 	
 	@Override
 	public void imGui() {
-		ImGui.begin("Test Window");
-		ImGui.text("Some random text");
+		ImGui.begin("Test window");
+		
+		ImVec2 window_pos = new ImVec2();
+		ImGui.getWindowPos(window_pos);
+		ImVec2 window_size = new ImVec2();
+		ImGui.getWindowSize(window_size);
+		ImVec2 item_spacing = new ImVec2();
+		ImGui.getStyle().getItemSpacing(item_spacing);
+		
+		float window_x2 = window_pos.x + window_size.x;
+		for (int i = 0; i < sprites.size(); i++) {
+			Sprite sprite = sprites.getSprite(i);
+			float sprite_width = sprite.getWidth() * 4;
+			float sprite_height = sprite.getHeight() * 4;
+			int id = sprite.getTexId();
+			Vector2f[] tex_coords= sprite.getTexCoords();
+			
+			ImGui.pushID(i);
+			if (ImGui.imageButton(id, sprite_width, sprite_height, tex_coords[2].x, tex_coords[0].y, tex_coords[0].x, tex_coords[2].y)) {
+				GameObject object = Prefabs.generateSpriteObject(sprite, sprite_width, sprite_height);
+				mouse_controls.pickupObject(object);
+			}
+			ImGui.popID();
+			
+			ImVec2 last_button_pos = new ImVec2();
+			ImGui.getItemRectMax(last_button_pos);
+			float last_button_x2 = last_button_pos.x;
+			float next_button_x2 = last_button_x2 + item_spacing.x + sprite_width;
+			if (i + 1 < sprites.size() && next_button_x2 < window_x2) {
+				ImGui.sameLine();
+			}
+		}
+		
 		ImGui.end();
 	}
 }
