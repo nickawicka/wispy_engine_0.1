@@ -111,7 +111,7 @@ public abstract class Scene {
 				addGameObjectToScene(objs[i]);
 				for (Component c : objs[i].getAllComponents()) {
 					if (c.uid() > max_comp_id) {
-						max_comp_id = c.uid();
+						max_comp_id = c.uid();//
 					}
 				}
 				if (objs[i].uid() > max_go_id) {
