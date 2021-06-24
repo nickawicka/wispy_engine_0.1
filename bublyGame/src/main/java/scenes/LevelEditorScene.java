@@ -110,7 +110,7 @@ public class LevelEditorScene extends Scene {
 			Vector2f[] tex_coords= sprite.getTexCoords();
 			
 			ImGui.pushID(i);
-			if (ImGui.imageButton(id, sprite_width, sprite_height, tex_coords[2].x, tex_coords[0].y, tex_coords[0].x, tex_coords[2].y)) {
+			if (ImGui.imageButton(id, sprite_width, sprite_height, tex_coords[0].x, tex_coords[0].y, tex_coords[2].x, tex_coords[2].y)) {
 				GameObject object = Prefabs.generateSpriteObject(sprite, sprite_width, sprite_height);
 				mouse_controls.pickupObject(object);
 			}
