@@ -3,6 +3,7 @@ package rose;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
+import renderer.DebugDraw;
 import scenes.LevelEditorScene;
 import scenes.LevelScene;
 import scenes.Scene;
@@ -168,10 +169,13 @@ public class Window {
             // Polls input and swap frame buffers.
             glfwPollEvents();
             
+            DebugDraw.beginFrame();
+            
             glClearColor(r, g, b, a);
             glClear(GL_COLOR_BUFFER_BIT);
             
             if (delta >= 0) {
+            	DebugDraw.draw();
             	current_scene.update(delta);
             }
             

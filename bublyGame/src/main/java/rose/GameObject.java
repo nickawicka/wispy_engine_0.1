@@ -54,10 +54,6 @@ public class GameObject {
 		c.game_object = this;
 	}
 	
-	public List<Component> getAllComponents() {
-		return this.components;
-	}
-	
 	public void update(float dt) {
 		for (int i = 0; i < components.size(); i++) {
 			components.get(i).update(dt);
@@ -80,12 +76,16 @@ public class GameObject {
 		return this.z_index;
 	}
 	
-	public int uid() {
+	public int getUid() {
 		return this.uid;
 	}
 	
 	public static void init(int max_id) {
 		ID_COUNTER = max_id;
+	}
+	
+	public List<Component> getAllComponents() {
+		return this.components;
 	}
 
 	public String getName() {

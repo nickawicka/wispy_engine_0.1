@@ -7,6 +7,7 @@ import components.SpriteRenderer;
 import components.Spritesheet;
 import imgui.ImGui;
 import imgui.ImVec2;
+import renderer.DebugDraw;
 import rose.Camera;
 import rose.GameObject;
 import rose.GameObjectDeserializer;
@@ -17,6 +18,7 @@ import components.ComponentDeserializer;
 import components.MouseControls;
 import components.Rigidbody;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
 import util.AssetPool;
 
@@ -78,10 +80,17 @@ public class LevelEditorScene extends Scene {
 		AssetPool.getTexture("assets/images/test_image.png");
 	}
 	
+	float t = 0.0f;
+	
 	@Override
 	public void update(float dt) {
 		//System.out.println("FPS: " + (1.0f / dt));
 		mouse_controls.update(dt);
+		
+		float x = ((float)Math.sin(t) * 200.0f) + 600;
+		float y = ((float)Math.cos(t) * 200.0f) + 400;
+		t += 0.05f;
+		DebugDraw.addLine2D(new Vector2f(600, 400), new Vector2f(x, y), new Vector3f(0, 0, 1));
 		
 		for (GameObject go : this.game_objects) {
 			go.update(dt);
@@ -109,6 +118,8 @@ public class LevelEditorScene extends Scene {
 			int id = sprite.getTexId();
 			Vector2f[] tex_coords= sprite.getTexCoords();
 			
+			// TODO FLIP TEXTURE COORDS SO THAT IMAGES ARE PLACED CORRECT DIRECTION
+            // TODO ALSO CHANGE SPRITE SIZE TO 32x32
 			ImGui.pushID(i);
 			if (ImGui.imageButton(id, sprite_width, sprite_height, tex_coords[0].x, tex_coords[0].y, tex_coords[2].x, tex_coords[2].y)) {
 				GameObject object = Prefabs.generateSpriteObject(sprite, sprite_width, sprite_height);

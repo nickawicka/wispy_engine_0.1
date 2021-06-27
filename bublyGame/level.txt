@@ -2291,5 +2291,1373 @@
       }
     },
     "z_index": 0
+  },
+  {
+    "uid": 40,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 41
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 206.79999,
+        "y": 290.88004
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 41,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 42
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 221.20001,
+        "y": 183.36
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 42,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.25,
+                "y": 1.0
+              },
+              {
+                "x": 0.25,
+                "y": 0.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.125,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 43
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 500.40002,
+        "y": 243.09335
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 43,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 44
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 218.0,
+        "y": 358.8267
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 44,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 45
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 47.600006,
+        "y": 303.57336
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 45,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 46
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 595.60004,
+        "y": 269.97336
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 46,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 47
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 46.799988,
+        "y": 282.6667
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 47,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 48
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 46.799988,
+        "y": 282.6667
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 48,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 49
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 46.799988,
+        "y": 282.6667
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 49,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 50
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 46.799988,
+        "y": 282.6667
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 50,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 51
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 488.40002,
+        "y": 266.24002
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 51,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 52
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 507.59998,
+        "y": 37.75998
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 52,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 53
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 34.80002,
+        "y": 433.49335
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 53,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 54
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 987.6,
+        "y": 656.00006
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 54,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 55
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 1007.6001,
+        "y": 655.2534
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 55,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 56
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 846.0,
+        "y": 648.5334
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 56,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 57
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 9.200012,
+        "y": 144.2667
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 57,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 58
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 498.8,
+        "y": 86.77336
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 58,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 59
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 38.0,
+        "y": 194.29337
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 59,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 60
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 538.8,
+        "y": 65.12001
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 60,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.125,
+                "y": 1.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 0.0
+              },
+              {
+                "x": 0.0,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 61
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 693.19995,
+        "y": 89.01337
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 61,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.25,
+                "y": 1.0
+              },
+              {
+                "x": 0.25,
+                "y": 0.0
+              },
+              {
+                "x": 0.125,
+                "y": 0.0
+              },
+              {
+                "x": 0.125,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 62
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": 800.3999,
+        "y": 78.56003
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 62,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.625,
+                "y": 1.0
+              },
+              {
+                "x": 0.625,
+                "y": 0.0
+              },
+              {
+                "x": 0.5,
+                "y": 0.0
+              },
+              {
+                "x": 0.5,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 63
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": -245.20001,
+        "y": 86.77336
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
+  },
+  {
+    "uid": 63,
+    "name": "Sprite_Object_Gen",
+    "components": [
+      {
+        "type": "components.SpriteRenderer",
+        "properties": {
+          "color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "sprite": {
+            "width": 44.0,
+            "height": 64.0,
+            "texture": {
+              "file_path": "assets/images/moonguy_rotate(2).png",
+              "tex_id": 2,
+              "width": 352,
+              "height": 64
+            },
+            "tex_coords": [
+              {
+                "x": 0.625,
+                "y": 1.0
+              },
+              {
+                "x": 0.625,
+                "y": 0.0
+              },
+              {
+                "x": 0.5,
+                "y": 0.0
+              },
+              {
+                "x": 0.5,
+                "y": 1.0
+              }
+            ]
+          },
+          "uid": 64
+        }
+      }
+    ],
+    "transform": {
+      "position": {
+        "x": -232.39996,
+        "y": 81.54669
+      },
+      "scale": {
+        "x": 176.0,
+        "y": 256.0
+      }
+    },
+    "z_index": 0
   }
 ]
