@@ -15,6 +15,7 @@ import rose.Prefabs;
 import rose.Transform;
 import components.Component;
 import components.ComponentDeserializer;
+import components.GridLines;
 import components.MouseControls;
 import components.Rigidbody;
 import org.joml.Vector2f;
@@ -28,7 +29,7 @@ public class LevelEditorScene extends Scene {
 	private Spritesheet sprites;
 	SpriteRenderer obj_1_sprite;
 	
-	MouseControls mouse_controls = new MouseControls();
+	GameObject level_editor_stuff = new GameObject("Level Editor", new Transform(new Vector2f()), 0);
 
 	public LevelEditorScene() {
 		
@@ -36,15 +37,19 @@ public class LevelEditorScene extends Scene {
 	
 	@Override
 	public void init() {	
+		level_editor_stuff.addComponent(new MouseControls());
+		level_editor_stuff.addComponent(new GridLines());
+		
 		loadResources();
 		this.camera = new Camera(new Vector2f(-250, 0));
 		sprites = AssetPool.getSpritesheet("assets/images/moonguy_rotate(2).png");
+		DebugDraw.addLine2D(new Vector2f(0, 0), new Vector2f(800, 800), new Vector3f(1, 1, 1), 240);
 		if (level_loaded) {
 			this.active_game_object = game_objects.get(0);
 			return;
 		}			
 		
-		obj_1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100), new Vector2f(256, 256)), 2);
+		/*obj_1 = new GameObject("Object 1", new Transform(new Vector2f(200, 100), new Vector2f(256, 256)), 2);
 		obj_1_sprite = new SpriteRenderer();
 		obj_1_sprite.setSprite(sprites.getSprite(0));
 		obj_1.addComponent(obj_1_sprite);
@@ -58,7 +63,7 @@ public class LevelEditorScene extends Scene {
 		obj_2_sprite.setTexture(AssetPool.getTexture("assets/images/test_image.png"));
 		obj_2_sprite_renderer.setSprite(obj_2_sprite);
 		obj_2.addComponent(obj_2_sprite_renderer);
-		this.addGameObjectToScene(obj_2);	
+		//this.addGameObjectToScene(obj_2);	
 		
 		Gson gson = new GsonBuilder()
 				.setPrettyPrinting()
@@ -68,7 +73,8 @@ public class LevelEditorScene extends Scene {
 		String serialized = gson.toJson(obj_1);
 		System.out.println(serialized);
 		GameObject obj = gson.fromJson(serialized, GameObject.class);
-		System.out.println(obj);
+		System.out.println(obj);	*/	
+		
 	}
 	
 	private void loadResources() {
@@ -85,12 +91,7 @@ public class LevelEditorScene extends Scene {
 	@Override
 	public void update(float dt) {
 		//System.out.println("FPS: " + (1.0f / dt));
-		mouse_controls.update(dt);
-		
-		float x = ((float)Math.sin(t) * 200.0f) + 600;
-		float y = ((float)Math.cos(t) * 200.0f) + 400;
-		t += 0.05f;
-		DebugDraw.addLine2D(new Vector2f(600, 400), new Vector2f(x, y), new Vector3f(0, 0, 1));
+		level_editor_stuff.update(dt);
 		
 		for (GameObject go : this.game_objects) {
 			go.update(dt);
@@ -118,12 +119,10 @@ public class LevelEditorScene extends Scene {
 			int id = sprite.getTexId();
 			Vector2f[] tex_coords= sprite.getTexCoords();
 			
-			// TODO FLIP TEXTURE COORDS SO THAT IMAGES ARE PLACED CORRECT DIRECTION
-            // TODO ALSO CHANGE SPRITE SIZE TO 32x32
 			ImGui.pushID(i);
-			if (ImGui.imageButton(id, sprite_width, sprite_height, tex_coords[0].x, tex_coords[0].y, tex_coords[2].x, tex_coords[2].y)) {
-				GameObject object = Prefabs.generateSpriteObject(sprite, sprite_width, sprite_height);
-				mouse_controls.pickupObject(object);
+			if (ImGui.imageButton(id, sprite_width, sprite_height, tex_coords[2].x, tex_coords[0].y, tex_coords[0].x, tex_coords[2].y)) {
+				GameObject object = Prefabs.generateSpriteObject(sprite, 32, 32);
+				level_editor_stuff.getComponent(MouseControls.class).pickupObject(object);
 			}
 			ImGui.popID();
 			

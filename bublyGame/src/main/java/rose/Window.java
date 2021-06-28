@@ -35,7 +35,7 @@ public class Window {
 		this.height = 900;
 		r = 1;
 		b = 1;
-		g = 0;
+		g = 1;
 		a = 1;
 	}
 	

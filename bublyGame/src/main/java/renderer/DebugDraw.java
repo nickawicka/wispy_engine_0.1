@@ -38,7 +38,7 @@ public class DebugDraw {
 		glBufferData(GL_ARRAY_BUFFER, vertex_array.length * Float.BYTES, GL_DYNAMIC_DRAW);
 		
 		// Enable the vertex array attributes
-		glVertexAttribPointer(0, 3, GL_FLOAT, false, 6 * Float.BYTES, GL_DYNAMIC_DRAW);
+		glVertexAttribPointer(0, 3, GL_FLOAT, false, 6 * Float.BYTES, 0);
 		glEnableVertexAttribArray(0);
 		
 		glVertexAttribPointer(1, 3, GL_FLOAT, false, 6 * Float.BYTES, 3 * Float.BYTES);
@@ -89,8 +89,8 @@ public class DebugDraw {
 	
 		// Use the shader
 		shader.use();
-		shader.uploadMat4f("u_projection", Window.getScene().camera().getProjectionMatrix());
-		shader.uploadMat4f("u_view", Window.getScene().camera().getViewMatrix());
+		shader.uploadMat4f("u_proj_matrix", Window.getScene().camera().getProjectionMatrix());
+		shader.uploadMat4f("u_view_matrix", Window.getScene().camera().getViewMatrix());
 		
 		// Bind the vao
 		glBindVertexArray(vao_id);
