@@ -23,7 +23,7 @@ public class CollisionDetectorTests {
         Line2D line = new Line2D(new Vector2f(0, 0), new Vector2f(12, 4));
         Vector2f point = new Vector2f(12, 4);
 
-        assertTrue(IntersectDetector2D.pointOnLine(point, line));
+        assertTrue(IntersectDetector2D.pointOnLine(point, line)); // fff
     }
 
     @Test
