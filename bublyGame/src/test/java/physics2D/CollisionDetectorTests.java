@@ -32,6 +32,6 @@ public class CollisionDetectorTests {
         Vector2f point = new Vector2f(0, 5);
 
         boolean result = IntersectDetector2D.pointOnLine(point, line);
-        assertTrue(result); //sss
+        assertTrue(result); 
     }
 }
